@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rabia University | Excellence & Innovation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --brand-navy: #0a192f;
+            --brand-gold: #c5a059;
+            --white: #ffffff;
+            --light-bg: #f8f9fa;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            color: var(--brand-navy); 
+            background-color: var(--white); 
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Navigation */
+        .top-info { background: var(--brand-navy); color: var(--white); padding: 10px 10%; display: flex; justify-content: space-between; font-size: 11px; z-index: 1001; }
+        .top-info a { color: var(--brand-gold); text-decoration: none; margin-left: 15px; cursor: pointer; }
+
+        header { background: var(--white); padding: 15px 10%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 5px 20px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
+        .brand { display: flex; align-items: center; gap: 12px; cursor: pointer; }
+        .brand-logo { width: 45px; height: 45px; background: var(--brand-navy); color: var(--brand-gold); display: flex; align-items: center; justify-content: center; font-family: 'Cinzel'; font-size: 22px; border: 2px solid var(--brand-gold); border-radius: 4px; }
+        .brand-text h1 { font-family: 'Cinzel', serif; font-size: 20px; letter-spacing: 1px; color: var(--brand-navy); }
+
+        nav ul { display: flex; list-style: none; gap: 20px; align-items: center; }
+        nav ul li a { text-decoration: none; color: var(--brand-navy); font-weight: 700; font-size: 11px; text-transform: uppercase; cursor: pointer; transition: 0.3s; position: relative; padding-bottom: 5px; }
+        nav ul li a.active { color: var(--brand-gold); }
+        nav ul li a.active::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; background: var(--brand-gold); }
+
+        main { flex: 1; }
+        .page { display: none; width: 100%; }
+        .page.active { display: block; animation: fadeIn 0.5s ease; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* Hero */
+      
+.hero { 
+    height: 75vh; 
+    background: linear-gradient(rgba(10, 25, 47, 0.6), rgba(10, 25, 47, 0.6)), 
+                url('https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&q=80&w=1920'); 
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Kaydırırken derinlik hissi verir */
+    display: flex; 
+    align-items: center; 
+    padding: 0 10%; 
+    color: white; 
+}
+        /* Quick Access Panel */
+        .quick-links { display: grid; grid-template-columns: repeat(4, 1fr); background: var(--brand-gold); width: 85%; margin: -40px auto 0; border-radius: 8px; position: relative; z-index: 10; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        .link-item { padding: 25px; text-align: center; color: var(--brand-navy); font-weight: 700; cursor: pointer; border-right: 1px solid rgba(0,0,0,0.1); transition: 0.3s; }
+        .link-item:last-child { border-right: none; }
+        .link-item:hover { background: var(--brand-navy); color: var(--brand-gold); }
+        .link-item i { font-size: 24px; margin-bottom: 8px; display: block; }
+
+        /* Statistics */
+        .stat-section { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; padding: 80px 10% 40px; text-align: center; background: var(--light-bg); }
+        .stat-box h3 { font-size: 40px; color: var(--brand-navy); font-weight: 800; margin-bottom: 5px; }
+        .stat-box p { color: var(--brand-gold); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* Info Grid */
+        .info-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 40px; padding: 60px 10%; }
+        .notice-board { border: 1px solid #eee; border-radius: 12px; overflow: hidden; background: white; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .notice-head { background: var(--brand-navy); color: var(--brand-gold); padding: 15px; text-align: center; font-family: 'Cinzel'; font-size: 18px; }
+        .notice-list { padding: 20px; }
+        .notice-item { display: flex; gap: 15px; padding: 15px 0; border-bottom: 1px solid #f0f0f0; }
+        .notice-item:last-child { border-bottom: none; }
+        .n-date { background: var(--brand-gold); color: white; padding: 8px; border-radius: 6px; font-weight: 700; font-size: 11px; min-width: 55px; text-align: center; height: fit-content; }
+
+        /* Faculty Cards */
+        .faculty-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; padding: 40px 10%; }
+        .f-card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.07); transition: 0.3s; border: 1px solid #eee; }
+        .f-card:hover { transform: translateY(-10px); border-color: var(--brand-gold); }
+        .f-img { height: 220px; width: 100%; overflow: hidden; }
+        .f-img img { width: 100%; height: 100%; object-fit: cover; }
+        .f-info { padding: 25px; }
+        .f-info h4 { font-family: 'Cinzel'; color: var(--brand-navy); margin-bottom: 10px; font-size: 18px; }
+        .f-info p { font-size: 14px; color: #666; line-height: 1.5; }
+        .f-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 15px; }
+        .tag { background: var(--light-bg); padding: 4px 10px; border-radius: 20px; font-size: 10px; font-weight: 700; border: 1px solid #ddd; color: var(--brand-navy); }
+
+        /* Culture & Nature Specific */
+        .heritage-header { text-align: center; padding: 60px 10% 20px; }
+        .heritage-header h2 { font-family: 'Cinzel'; font-size: 32px; color: var(--brand-navy); margin-bottom: 15px; }
+        .heritage-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; padding: 40px 10%; }
+        .h-card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.05); position: relative; }
+        .h-img { height: 250px; width: 100%; object-fit: cover; }
+        .h-overlay { position: absolute; top: 20px; right: 20px; background: var(--brand-gold); color: var(--brand-navy); padding: 5px 15px; border-radius: 5px; font-weight: 800; font-size: 10px; text-transform: uppercase; }
+        .h-info { padding: 25px; }
+        .h-info h3 { font-family: 'Cinzel'; margin-bottom: 10px; color: var(--brand-navy); font-size: 20px; }
+        .h-info p { font-size: 14px; line-height: 1.7; color: #555; }
+
+        /* Gallery */
+        .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; padding: 0 10% 60px; }
+        .gallery-item { height: 250px; border-radius: 10px; overflow: hidden; position: relative; cursor: pointer; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .gallery-item:hover img { transform: scale(1.1); }
+
+        /* Footer */
+        footer { background: var(--brand-navy); color: #8892b0; padding: 60px 10% 30px; border-top: 4px solid var(--brand-gold); margin-top: auto; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; }
+        .footer-box h4 { color: var(--brand-gold); font-family: 'Cinzel'; margin-bottom: 25px; font-size: 16px; letter-spacing: 1px; }
+        .footer-box ul { list-style: none; font-size: 13px; }
+        .footer-box li { margin-bottom: 12px; cursor: pointer; transition: 0.3s; }
+        .footer-box li:hover { color: white; padding-left: 5px; }
+        .social-bar { display: flex; gap: 15px; margin-top: 20px; }
+        .social-bar i { font-size: 20px; color: var(--brand-gold); cursor: pointer; transition: 0.3s; }
+        .social-bar i:hover { color: white; transform: translateY(-3px); }
+
+        /* Modal */
+        .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.85); display: none; align-items: center; justify-content: center; z-index: 2000; backdrop-filter: blur(5px); }
+        .modal-content { background: white; padding: 40px; border-radius: 15px; width: 450px; position: relative; }
+        .form-input { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 5px; font-family: 'Montserrat'; }
+        .cta-btn { background: var(--brand-gold); color: var(--brand-navy); border: none; padding: 12px 25px; font-weight: 800; cursor: pointer; border-radius: 4px; text-transform: uppercase; font-size: 12px; transition: 0.3s; letter-spacing: 1px; }
+        .cta-btn:hover { background: #b08d4a; }
+
+        @media (max-width: 768px) {
+            .footer-grid, .info-grid, .stat-section, .quick-links { grid-template-columns: 1fr; }
+            .hero-content h2 { font-size: 32px; }
+            .gallery-grid { grid-template-columns: 1fr; }
+            nav ul { display: none; }
+        }
+        /* Sayıların yanına + işareti ekleyen kod */
+        .counter::after {
+            content: '+';
+            font-size: 25px;
+            color: var(--brand-gold);
+            margin-left: 2px;
+            vertical-align: top;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-info">
+        <div><i class="fas fa-university"></i> Rabia University | Shikohabad, UP | UGC Recognized Institution</div>
+        <div>
+            <a onclick="openModal('student')">Student Login</a>
+            <a onclick="openModal('admission')">Online Admissions</a>
+        </div>
+    </div>
+
+    <header>
+        <div class="brand" onclick="showPage('home')">
+            <div class="brand-logo">R</div>
+            <div class="brand-text"><h1>RABIA UNIVERSITY</h1></div>
+        </div>
+        <nav>
+            <ul>
+                <li><a onclick="showPage('home')" id="nav-home" class="active">Home</a></li>
+                <li><a onclick="showPage('about')" id="nav-about">About Us</a></li>
+                <li><a onclick="showPage('services')" id="nav-services">Campus Services</a></li>
+                <li><a onclick="showPage('culture')" id="nav-culture">Culture & Nature</a></li>
+                <li><a onclick="showPage('faculties')" id="nav-faculties">Faculties</a></li>
+                <li><a onclick="showPage('contact')" id="nav-contact">Contact</a></li>
+                <li><button class="cta-btn" onclick="openModal('admission')">ADMISSION 2026</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="page active">
+            <div class="hero">
+                <div class="hero-content">
+                    <h2>Build Your Future <br>With Rabia University</h2>
+                    <p>100-acre lush green campus with industry-oriented programs and global educational standards.</p>
+                    <button class="cta-btn" onclick="showPage('faculties')">Explore Programs</button>
+                </div>
+            </div>
+
+            <div class="quick-links">
+                <div class="link-item" onclick="openModal('admission')"><i class="fas fa-edit"></i>Apply Now</div>
+                <div class="link-item" onclick="showPage('culture')"><i class="fas fa-leaf"></i>Campus Life</div>
+                <div class="link-item" onclick="openModal('fees')"><i class="fas fa-wallet"></i>Online Fees</div>
+                <div class="link-item" onclick="showPage('contact')"><i class="fas fa-headset"></i>Support Desk</div>
+            </div>
+
+         <div class="stat-section">
+    <div class="stat-box">
+        <h3 class="counter" data-target="117">0</h3>
+        <p>Academic Programs</p>
+    </div>
+    <div class="stat-box">
+        <h3 class="counter" data-target="300">0</h3>
+        <p>Expert Faculty</p>
+    </div>
+    <div class="stat-box">
+        <h3 class="counter" data-target="50">0</h3>
+        <p>Advanced Labs</p>
+    </div>
+    <div class="stat-box">
+        <h3 class="counter" data-target="25000">0</h3>
+        <p>Global Alumni</p>
+    </div>
+</div>
+
+          <div class="info-grid">
+    <div>
+        <h3 style="font-family:'Cinzel'; margin-bottom:20px; font-size: 24px;">Empowering Tomorrow's Leaders</h3>
+        <p style="line-height:1.8; color:#444; margin-bottom: 20px;">
+            Rabia University offers a dynamic ecosystem ranging from medical sciences to artificial intelligence. 
+            Located in the heart of Shikohabad, our campus blends modern technology with traditional academic values.
+        </p>
+        
+        <div style="position:relative; border-radius:15px; overflow:hidden; padding-top: 56.25%; background:#000; box-shadow: 0 10px 30px rgba(0,0,0,0.15);">
+            <iframe 
+                style="position:absolute; top:0; left:0; width:100%; height:100%; border:none;"
+                src="https://www.youtube.com/embed/qZVGnSUBN5Q" 
+                title="Rabia University Introduction
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
+        </div>
+
+        <div style="margin-top: 25px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div style="padding: 20px; background: #fdfaf3; border-radius: 12px; border-left: 4px solid var(--brand-gold); box-shadow: 0 4px 12px rgba(0,0,0,0.03);">
+                <h5 style="color: var(--brand-navy); margin-bottom: 8px; font-family: 'Cinzel';">Message from the Rector's</h5>
+                <p style="font-size: 12px; color: #555; line-height: 1.6;">
+                    Office Rabia University is enhancing its vision and the global education opportunities we offer.
+                    We are training the leaders of the future in our 100-acre green space.
+                </p>
+            </div>
+
+            <div style="padding: 20px; background: #f3f5fd; border-radius: 12px; border-left: 4px solid var(--brand-navy); box-shadow: 0 4px 12px rgba(0,0,0,0.03);">
+                <h5 style="color: var(--brand-navy); margin-bottom: 8px; font-family: 'Cinzel';">Official Message</h5>
+                <p style="font-size: 12px; color: #555; line-height: 1.6;">
+                    Explore the vision of Rabia University. We empower students across 117+ programs 
+                    on our 100-acre lush green campus through innovation and excellence.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="notice-board">
+        <div class="notice-head">Notices & Notifications</div>
+        <div class="notice-list">
+            <div class="notice-item">
+                <div class="n-date">12 FEB</div>
+                <p>New International Student Orientation starts today.</p>
+            </div>
+            <div class="notice-item">
+                <div class="n-date">09 FEB</div>
+                <p>Official 2026 Admissions Now Open.</p>
+            </div>
+            <div class="notice-item">
+                <div class="n-date">05 FEB</div>
+                <p>Pharmacy Research Seminar Registrations.</p>
+            </div>
+            <div class="notice-item">
+                <div class="n-date">01 FEB</div>
+                <p>Career Fair: 15+ MNCs Visiting Campus.</p>
+            </div>
+            <div class="notice-item">
+                <div class="n-date">28 JAN</div>
+                <p>Grand Opening: New AI Lab in B-Block.</p>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+                   
+
+            <h3 style="text-align:center; font-family:'Cinzel'; margin-bottom:30px; font-size: 24px;">Campus Life Gallery</h3>
+            <div class="gallery-grid">
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&q=80&w=600" alt="Convocation"></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&q=80&w=600" alt="Library"></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&q=80&w=600" alt="Campus"></div>
+            </div>
+        </section>
+<section id="services" class="page">
+    <div class="heritage-header">
+        <h2>Campus Services & Guidelines</h2>
+        <p>Ensuring a world-class environment for both local and international students.</p>
+    </div>
+
+    <div class="faculty-grid">
+        <div class="f-card" style="border-left: 5px solid var(--brand-gold); background: #fffcf5;">
+            <div class="f-info">
+                <h4 style="color:var(--brand-navy)">
+                    <i class="fas fa-passport" style="color:var(--brand-gold)"></i> FRRO Support Cell
+                </h4>
+                <p>Dedicated assistance for international students regarding <strong>Foreigners Regional Registration Office (FRRO)</strong> formalities, visa extensions, and mandatory C-Form processing.</p>
+                <div class="f-tags">
+                    <span class="tag">Visa Support</span>
+                    <span class="tag">C-Form</span>
+                    <span class="tag">Intl. Desk</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="f-card">
+            <div class="f-info">
+                <h4><i class="fas fa-hand-holding-medical" style="color:var(--brand-gold)"></i> Health & Wellness</h4>
+                <p>24/7 medical assistance, emergency ambulance service, and specialized doctors available on campus for all students and staff.</p>
+                <div class="f-tags">
+                    <span class="tag">Medical Center</span>
+                    <span class="tag">24/7 Service</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="f-card">
+            <div class="f-info">
+                <h4><i class="fas fa-wifi" style="color:var(--brand-gold)"></i> Digital Campus</h4>
+                <p>High-speed optical fiber Wi-Fi throughout the 100-acre campus and smart classroom integration for modern learning.</p>
+                <div class="f-tags">
+                    <span class="tag">High Speed</span>
+                    <span class="tag">Smart Class</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="f-card">
+            <div class="f-info">
+                <h4><i class="fas fa-bus" style="color:var(--brand-gold)"></i> Transport & Shuttle</h4>
+                <p>Safe and punctual bus services connecting the university to Shikohabad, Firozabad, and nearby districts.</p>
+                <div class="f-tags">
+                    <span class="tag">Student Bus</span>
+                    <span class="tag">Safe Travel</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="padding: 40px 10%; background: var(--light-bg); margin: 40px 10%; border-radius: 15px;">
+        <h3 style="font-family:'Cinzel'; text-align:center; margin-bottom:30px;">Important Guidelines</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+            
+            <div style="background: white; padding: 20px; border-radius: 10px; border-bottom: 3px solid var(--brand-navy);">
+                <h5 style="margin-bottom: 10px; color: var(--brand-gold);">International Students</h5>
+                <p style="font-size: 13px; color: #555; line-height: 1.6;">
+                    Mandatory FRRO registration must be completed within <strong>14 days</strong> of arrival in India. Please submit your passport and visa copies to the Admin Block.
+                </p>
+            </div>
+
+            <div style="background: white; padding: 20px; border-radius: 10px; border-bottom: 3px solid var(--brand-navy);">
+                <h5 style="margin-bottom: 10px; color: var(--brand-gold);">Zero Tolerance Policy</h5>
+                <p style="font-size: 13px; color: #555; line-height: 1.6;">
+                    The campus maintains a strict anti-ragging and non-discrimination policy to ensure a safe environment for everyone.
+                </p>
+            </div>
+
+            <div style="background: white; padding: 20px; border-radius: 10px; border-bottom: 3px solid var(--brand-navy);">
+                <h5 style="margin-bottom: 10px; color: var(--brand-gold);">Green Campus</h5>
+                <p style="font-size: 13px; color: #555; line-height: 1.6;">
+                    Rabia University is a plastic-free zone. Students are encouraged to use designated recycling points across the 100-acre site.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+        <section id="culture" class="page">
+            <div class="heritage-header">
+                <h2>Culture, History & Nature</h2>
+                <p>Our university is just a step away from one of the world's richest cultural heritage zones, Agra and its surroundings.</p>
+            </div>
+            
+            <div class="heritage-grid">
+                <div class="h-card">
+                    <img src="https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&q=80&w=800" class="h-img" alt="Taj Mahal">
+                    <div class="h-overlay">World Heritage</div>
+                    <div class="h-info">
+                        <h3>Taj Mahal, Agra</h3>
+                        <p>This architectural masterpiece near our campus is a living part of history and art studies for our students.</p>
+                    </div>
+                </div>
+                <div class="h-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Bateshwar_Temples.jpg" class="h-img" alt="Bateshwar">
+                    <div class="h-overlay">Historical Site</div>
+                    <div class="h-info">
+                        <h3>Bateshwar Dham</h3>
+                        <p>A complex of 101 ancient temples on the banks of the Yamuna. Discover the spiritual atmosphere of the region.</p>
+                    </div>
+                </div>
+                <div class="h-card">
+                    <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2b/b7/95/23/caption.jpg?w=1100&h=-1&s=1" class="h-img" alt="Lion Safari">
+                    <div class="h-overlay">Wild Life</div>
+                    <div class="h-info">
+                        <h3>Etawah Lion Safari</h3>
+                        <p>The region's largest wildlife conservation park where you can see Asian lions in their natural habitat.</p>
+                    </div>
+                </div>
+                <div class="h-card">
+                    <img src="https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&q=80&w=800" class="h-img" alt="Balaji Temple">
+                    <div class="h-overlay">Local Culture</div>
+                    <div class="h-info">
+                        <h3>Balaji Shakti Peeth</h3>
+                        <p>The local spiritual hub of Shikohabad. An iconic structure where locals and students find peace.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="page" style="padding:60px 10%;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center;">
+                <div>
+                    <h2 style="font-family:'Cinzel'; color: var(--brand-navy); font-size: 32px; margin-bottom: 20px;">Our Heritage & Vision</h2>
+                    <p style="line-height:1.8; color: #444; margin-bottom: 15px;">
+                        Rabia University is a well-established educational institution that combines academic excellence with innovative thinking in the heart of Shikohabad.
+                    </p>
+                    <p style="line-height:1.8; color: #444;">
+                        With our 100-acre green campus, modern laboratories, and over 300 expert academic staff, we are training the leaders of the future.
+                    </p>
+                    <div style="margin-top: 30px;">
+                        <button class="cta-btn" onclick="showPage('culture')">Explore Culture Guide</button>
+                    </div>
+                </div>
+                <div style="border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                    <img src="https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&q=80&w=800" alt="Campus View" style="width: 100%; height: auto; display: block;">
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 60px;">
+                <div style="background: var(--light-bg); padding: 30px; border-radius: 15px; border-bottom: 4px solid var(--brand-gold);">
+                    <h4 style="font-family:'Cinzel'; color: var(--brand-navy); margin-bottom: 20px;"><i class="fas fa-info-circle" style="color:var(--brand-gold)"></i> Important Guidelines</h4>
+                    <ul style="list-style: none; line-height: 2.2; font-size: 14px; color: #444;">
+                        <li><i class="fas fa-check" style="color:var(--brand-gold); margin-right: 10px;"></i> Medical File Preparation</li>
+                        <li><i class="fas fa-check" style="color:var(--brand-gold); margin-right: 10px;"></i> Uninterrupted Campus Connectivity</li>
+                        <li><i class="fas fa-check" style="color:var(--brand-gold); margin-right: 10px;"></i> Planned Culture Tour Participation</li>
+                        <li><i class="fas fa-check" style="color:var(--brand-gold); margin-right: 10px;"></i> Secure Financial Transactions</li>
+                    </ul>
+                </div>
+                <div style="background: var(--light-bg); padding: 30px; border-radius: 15px; border-bottom: 4px solid var(--brand-navy);">
+                    <h4 style="font-family:'Cinzel'; color: var(--brand-navy); margin-bottom: 20px;"><i class="fas fa-concierge-bell" style="color:var(--brand-navy)"></i> Campus Support</h4>
+                    <ul style="list-style: none; line-height: 2.2; font-size: 14px; color: #444;">
+                        <li><i class="fas fa-check" style="color:var(--brand-navy); margin-right: 10px;"></i> 24/7 Security & Health Services</li>
+                        <li><i class="fas fa-check" style="color:var(--brand-navy); margin-right: 10px;"></i> High-Speed Free Campus Wi-Fi</li>
+                        <li><i class="fas fa-check" style="color:var(--brand-navy); margin-right: 10px;"></i> Student Shuttle Services</li>
+                        <li><i class="fas fa-check" style="color:var(--brand-navy); margin-right: 10px;"></i> Modern Mess & Cafeteria</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="faculties" class="page">
+            <h2 style="text-align:center; font-family:'Cinzel'; margin:50px 0 20px; font-size: 28px;">Academic Units</h2>
+            <div class="faculty-grid">
+                <div class="f-card">
+                    <div class="f-img"><img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&q=80&w=600"></div>
+                    <div class="f-info">
+                        <h4>Engineering & IT</h4>
+                        <p>Specialized in AI, Robotics, and Software Systems with advanced laboratory facilities.</p>
+                        <div class="f-tags"><span class="tag">B.Tech</span><span class="tag">AI Research</span></div>
+                    </div>
+                </div>
+
+                <div class="f-card">
+    <div class="f-img"><img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80&w=600"></div>
+    <div class="f-info">
+        <h4>Management</h4>
+        <p>Developing future corporate leaders through MBA and BBA programs with global exposure.</p>
+        <div class="f-tags"><span class="tag">MBA</span><span class="tag">BBA</span></div>
+    </div>
+</div>
+
+<div class="f-card">
+    <div class="f-img"><img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&q=80&w=600"></div>
+    <div class="f-info">
+        <h4>Law</h4>
+        <p>Legal studies focused on justice, ethics, and judicial excellence with moot court practice.</p>
+        <div class="f-tags"><span class="tag">LLB</span><span class="tag">BA-LLB</span></div>
+    </div>
+</div>
+
+<div class="f-card">
+    <div class="f-img"><img src="https://d1ymz67w5raq8g.cloudfront.net/Pictures/480xAny/3/5/8/520358_f0254669students_pouring_sample_into_flask_in_laboratory_453957.jpg"></div>
+    <div class="f-info">
+        <h4>Science</h4>
+        <p>Pure and applied sciences including Physics, Chemistry, and Biological research.</p>
+        <div class="f-tags"><span class="tag">B.Sc</span><span class="tag">M.Sc</span></div>
+    </div>
+</div>
+
+<div class="f-card">
+    <div class="f-img"><img src="https://images.unsplash.com/photo-1459908676235-d5f02a50184b?auto=format&fit=crop&q=80&w=600"></div>
+    <div class="f-info">
+        <h4>Arts & Humanities</h4>
+        <p>Exploring literature, social sciences, and creative expression.</p>
+        <div class="f-tags"><span class="tag">BA</span><span class="tag">MA</span></div>
+    </div>
+</div>
+
+<div class="f-card">
+    <div class="f-img"><img src="https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?auto=format&fit=crop&q=80&w=600"></div>
+    <div class="f-info">
+        <h4>Agriculture</h4>
+        <p>Leading the green revolution with advanced farming techniques and soil science.</p>
+        <div class="f-tags"><span class="tag">B.Sc Agri</span><span class="tag">Research</span></div>
+    </div>
+</div>
+                <div class="f-card">
+                    <div class="f-img"><img src="https://www.chitkara.edu.in/blogs/wp-content/uploads/2022/06/Future-Scope-of-Pharmacy-in-India-in-2022.jpg"></div>
+                    <div class="f-info">
+                        <h4>Pharmacy</h4>
+                        <p>Modern pharmaceutical education focused on clinical research and drug development.</p>
+                        <div class="f-tags"><span class="tag">B.Pharma</span><span class="tag">R&D</span></div>
+                    </div>
+                </div>
+                <div class="f-card">
+                    <div class="f-img"><img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=600"></div>
+                    <div class="f-info">
+                        <h4>Nursing & Health</h4>
+                        <p>Comprehensive medical education with hands-on clinical experience in top hospitals.</p>
+                        <div class="f-tags"><span class="tag">B.Sc Nursing</span><span class="tag">Health Mgmt.</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="page" style="padding:60px 10%;">
+            <h2 style="font-family:'Cinzel'; font-size: 28px; margin-bottom: 30px;">Get In Touch</h2>
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:40px;">
+                <div>
+                    <div style="margin-bottom: 20px;">
+                        <p style="font-weight: 700; color: var(--brand-navy);">Address:</p>
+                        <p>NH-2, Shikohabad, Distt. Firozabad, Uttar Pradesh, India</p>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <p style="font-weight: 700; color: var(--brand-navy);">Phone:</p>
+                        <p>+91 5676 234567</p>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <p style="font-weight: 700; color: var(--brand-navy);">Email:</p>
+                        <p>admission@rabia.edu.in</p>
+                    </div>
+                </div>
+                <div>
+                    <input type="text" class="form-input" placeholder="Full Name">
+                    <input type="email" class="form-input" placeholder="Email Address">
+                    <textarea class="form-input" rows="4" placeholder="Your Message"></textarea>
+                    <button class="cta-btn" style="width:100%">Submit Inquiry</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-box">
+                <div class="brand" style="margin-bottom:15px; cursor:default;">
+                    <div class="brand-logo" style="background:white; color:var(--brand-navy);">R</div>
+                    <h4 style="margin-left:10px; color:white;">RABIA UNIVERSITY</h4>
+                </div>
+                <p style="font-size:12px; line-height: 1.6;">A leading institution in higher education and research excellence in Uttar Pradesh.</p>
+                <div class="social-bar">
+                    <i class="fab fa-facebook-f"></i><i class="fab fa-instagram"></i><i class="fab fa-linkedin-in"></i><i class="fab fa-youtube"></i>
+                </div>
+            </div>
+            <div class="footer-box">
+                <h4>Institutional</h4>
+                <ul>
+                    <li onclick="showPage('about')">Our History</li>
+                    <li onclick="showPage('culture')">Regional Culture</li>
+                    <li onclick="showPage('services')">Campus Guidelines</li>
+                    <li>Academic Calendar</li>
+                </ul>
+            </div>
+            <div class="footer-box">
+                <h4>Portals</h4>
+                <ul>
+                    <li onclick="openModal('student')">Student Panel</li>
+                    <li onclick="openModal('admission')">Admissions</li>
+                    <li onclick="openModal('fees')">Quick Pay</li>
+                </ul>
+            </div>
+            <div class="footer-box">
+                <h4>Support</h4>
+                <ul>
+                    <li onclick="showPage('contact')">Contact Desk</li>
+                    <li>Career Center</li>
+                    <li>Privacy Policy</li>
+                </ul>
+            </div>
+        </div>
+        <div style="text-align:center; margin-top:40px; border-top:1px solid rgba(255,255,255,0.1); padding-top:20px; font-size:11px;">
+            &copy; 2026 Rabia University. All Rights Reserved.
+        </div>
+    </footer>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <h2 id="m-title" style="font-family:'Cinzel'; margin-bottom:20px; color: var(--brand-navy);">Portal</h2>
+            <div id="m-body"></div>
+            <div style="margin-top:20px; text-align:right;">
+                <button class="cta-btn" style="background:#eee; color:#333; margin-right:10px;" onclick="closeModal()">Cancel</button>
+                <button class="cta-btn" onclick="alert('Processing...')">Login</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            
+            document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+            const nav = document.getElementById('nav-' + pageId);
+            if(nav) nav.classList.add('active');
+            
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        function openModal(type) {
+            const m = document.getElementById('modal');
+            const t = document.getElementById('m-title');
+            const b = document.getElementById('m-body');
+            m.style.display = 'flex';
+            
+            if(type === 'student') {
+                t.innerText = "Student Portal";
+                b.innerHTML = '<input class="form-input" placeholder="Enrollment No"><input type="password" class="form-input" placeholder="Password">';
+            } else if(type === 'admission') {
+                t.innerText = "Admission Inquiry";
+                b.innerHTML = '<input class="form-input" placeholder="Full Name"><input class="form-input" placeholder="Phone Number"><input class="form-input" placeholder="Interested Program">';
+            } else if(type === 'fees') {
+                t.innerText = "Online Fee Payment";
+                b.innerHTML = '<input class="form-input" placeholder="Student ID"><input class="form-input" placeholder="Amount">';
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+
+        window.onclick = function(e) {
+            if(e.target.className === 'modal') closeModal();
+        }
+        const counters = document.querySelectorAll('.counter');
+const speed = 200; // Sayma hızı (düşük sayı daha hızlıdır)
+
+const startCounters = () => {
+    counters.forEach(counter => {
+        const updateCount = () => {
+            const target = +counter.getAttribute('data-target');
+            const count = +counter.innerText;
+            const inc = target / speed;
+
+            if (count < target) {
+                counter.innerText = Math.ceil(count + inc);
+                setTimeout(updateCount, 15);
+            } else {
+                counter.innerText = target;
+            }
+        };
+        updateCount();
+    });
+};
+
+
+window.onload = startCounters;
+    </script>
+</body>
+</html>
